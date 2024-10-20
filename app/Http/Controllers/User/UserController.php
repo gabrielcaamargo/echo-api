@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
+use App\DTO\User\CreateUserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserRequest;
 use App\Services\UserService;
-use App\Traits\BaseResponse;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class UserController extends Controller
 {
-
-    use BaseResponse;
 
     private UserService $userService;
 
@@ -22,7 +20,11 @@ class UserController extends Controller
 
     public function createUser(CreateUserRequest $request)
     {
-        // TODO: Check if user already exists before creating it
-        return $this->successResponse(["name" => "John Doe"], "User created successfully", Response::HTTP_CREATED);
+        $createUserDTO = new CreateUserDTO(
+            $request->name,
+            $request->email,
+            $request->username
+        );
+        return $this->userService->createUser($createUserDTO);
     }
 }
