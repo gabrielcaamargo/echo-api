@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\User;
 
-use App\Models\User;
 use App\DTO\User\CreateUserDTO;
+use App\Models\User;
 
 interface UserRepositoryInterface
 {
