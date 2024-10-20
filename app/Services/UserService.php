@@ -2,8 +2,8 @@
 
 namespace App\Services;
 use App\DTO\User\CreateUserDTO;
-use App\Models\User;
-use App\Repositories\UserRepositoryInterface;
+use App\Repositories\User\UserRepositoryInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserService
 {
@@ -13,6 +13,11 @@ class UserService
         $this->userRepository = $userRepository;
     }
   public function createUser(CreateUserDTO $createUserDTO) {
-    return $this->userRepository->createUser($createUserDTO);
+    $user =  $this->userRepository->createUser($createUserDTO);
+
+    return response()->json([
+        'status' => Response::HTTP_CREATED,
+        'data' => $user
+    ]);
   }
 }
