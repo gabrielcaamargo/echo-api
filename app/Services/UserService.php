@@ -22,6 +22,12 @@ class UserService
   public function createUser(CreateUserDTO $createUserDTO)
   {
     try {
+      $userExists = $this->userRepository->getUserByEmailOrUsername($createUserDTO->email, $createUserDTO->username);
+
+      if ($userExists) {
+        return $this->errorResponse('User already exists', Response::HTTP_CONFLICT);
+      }
+
       $user =  $this->userRepository->createUser($createUserDTO);
 
       return $this->successResponse($user, 'User created', Response::HTTP_CREATED);
