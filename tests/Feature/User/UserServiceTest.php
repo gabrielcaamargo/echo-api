@@ -17,21 +17,25 @@ beforeEach(function () {
     $this->userService = new UserService($this->userRepository);
 });
 
-test('it should create a new user', function () {
-    $user = User::factory()->create();
+describe('UserService', function () {
+    describe('createUser', function () {
+        it('should create a new user', function () {
+            $user = User::factory()->create();
 
-    $createUserDTO = new CreateUserDTO(
-        $user->name,
-        $user->email,
-        $user->username
-    );
+            $createUserDTO = new CreateUserDTO(
+                $user->name,
+                $user->email,
+                $user->username
+            );
 
-    $this->userRepository->shouldReceive('getUserByEmailOrUsername')->with($createUserDTO->email, $createUserDTO->username)->andReturn(null);
+            $this->userRepository->shouldReceive('getUserByEmailOrUsername')->with($createUserDTO->email, $createUserDTO->username)->andReturn(null);
 
-    $this->userRepository->shouldReceive('createUser')->with($createUserDTO)->andReturn($user);
+            $this->userRepository->shouldReceive('createUser')->with($createUserDTO)->andReturn($user);
 
-    $response = $this->userService->createUser($createUserDTO)->getData(true);
-    expect($response["success"])->toBe(true);
-    expect($response["data"])->toBe($user->toArray());
-    expect($response["message"])->toBe("User created");
+            $response = $this->userService->createUser($createUserDTO)->getData(true);
+            expect($response["success"])->toBe(true);
+            expect($response["data"])->toBe($user->toArray());
+            expect($response["message"])->toBe("User created");
+        });
+    });
 });
