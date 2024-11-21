@@ -1,1 +1,1 @@
-export * from './AccountAlreadyExists';
+export * from './UserAlreadyExists';

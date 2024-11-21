@@ -19,14 +19,16 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
-
+			"recommended": true,
+			"suspicious": {
+				"noConfusingVoidType": "off"
+			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "single",
-			"indentSize": 2,
+			"indentWidth": 2,
 			"indentStyle": "tab",
 			"bracketSpacing": false,
 			"semicolons": "always"
