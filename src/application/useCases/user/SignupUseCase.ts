@@ -24,7 +24,7 @@ export class SignupUseCase {
 			throw new UserAlreadyExists();
 		}
 
-		const hashedPassword = await hash(input.password, 8);
+		const hashedPassword = await hash(password, 12);
 
 		await this.userRepository.createUser(email, username, hashedPassword);
 	}
