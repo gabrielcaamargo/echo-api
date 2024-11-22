@@ -4,7 +4,7 @@ export interface ControllerRequest {
 	body: Record<string, any>;
 	params?: Record<string, any>;
 	query?: Record<string, any>;
-	headers: Record<string, any>;
+	headers?: Record<string, any>;
 }
 
 export interface ControllerResponse {
