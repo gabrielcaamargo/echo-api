@@ -8,6 +8,7 @@ export function routeAdapter(controller: ControllerInterface) {
 			headers: request.headers,
 			params: request.params,
 			query: request.query,
+			userId: request.metadata?.userId,
 		});
 
 		response.status(statusCode).json(body);
