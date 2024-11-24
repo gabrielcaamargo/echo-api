@@ -1,7 +1,7 @@
-import {UserAlreadyExists} from '@errors';
-import type {UserRepository} from '@repositories';
+import { UserAlreadyExists } from "@errors";
+import type { UserRepository } from "@repositories";
 
-import {hash} from 'bcryptjs';
+import { hash } from "bcryptjs";
 
 interface Input {
 	username: string;
@@ -14,9 +14,7 @@ type Output = void;
 export class SignupUseCase {
 	constructor(private userRepository: UserRepository) {}
 
-	async execute(input: Input): Promise<Output> {
-		const {email, password, username} = input;
-
+	async execute({ email, password, username }: Input): Promise<Output> {
 		const userAlreadyExists =
 			await this.userRepository.findUserByEmailOrUsername(email, username);
 
