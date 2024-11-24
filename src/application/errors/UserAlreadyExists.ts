@@ -1,3 +1,4 @@
 export class UserAlreadyExists extends Error {
-	name = 'UserAlreadyExists';
+	name = "UserAlreadyExists";
+	message = "User already exists";
 }
