@@ -1,13 +1,11 @@
 import "dotenv/config";
 import { env } from "@config";
-import { makeSignupController } from "@factories";
 import express from "express";
-import { routeAdapter } from "@routes";
+import { routes } from "@routes";
 
 const app = express();
 app.use(express.json());
-
-app.post("/auth/sign-up", routeAdapter(makeSignupController()));
+app.use(routes);
 
 app.listen(env.port, () =>
 	console.log(`🚀 Server running on http://localhost:${env.port}`)
